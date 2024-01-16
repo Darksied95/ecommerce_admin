@@ -45,11 +45,6 @@ export async function DELETE(
     req: Request, { params }: { params: { storeId: string } }
 ) {
     try {
-        const { searchParams } = new URL(req.url)
-        const storeId = searchParams.get("storeId")
-        console.log(storeId);
-
-        console.log('working *************************');
         const { userId } = auth()
 
         if (!userId) {
