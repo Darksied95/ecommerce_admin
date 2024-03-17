@@ -22,7 +22,7 @@ import toast from "react-hot-toast"
 import axios from "axios"
 import { useParams, useRouter } from "next/navigation"
 import { AlertModal } from "@/components/modals/alert-modal"
-import { Select, SelectContent, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 
 
@@ -40,7 +40,7 @@ const formSchema = z.object({
 type CategoryFormValues = z.infer<typeof formSchema>;
 
 export const CategoryForm: React.FC<CategoryFormProps> = ({
-    initialData
+    initialData, billboards
 }) => {
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(false);
@@ -63,7 +63,7 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
         try {
             setLoading(true)
             if (initialData) {
-                await axios.patch(`/api/${params.storeId}/categories/${params.billboardId}`, data)
+                await axios.patch(`/api/${params.storeId}/categories/${params.categoryId}`, data)
             } else {
                 await axios.post(`/api/${params.storeId}/categories`, data)
             }
@@ -82,13 +82,13 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
         try {
             setLoading(true)
 
-            await axios.delete(`/api/${params.storeId}/categories/${params.billboardId}`)
+            await axios.delete(`/api/${params.storeId}/categories/${params.categoryId}`)
             router.refresh()
             router.push(`/${params.storeId}/categories`)
             toast.success("Category deleted")
 
         } catch (error: any) {
-            toast.error("Make sure you removed all categories using this category")
+            toast.error("Make sure you removed all products using this category first")
         } finally {
             setLoading(false)
             setOpen(false)
@@ -156,7 +156,13 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
                                                 </SelectValue>
                                             </SelectTrigger>
                                         </FormControl>
-                                        <SelectContent></SelectContent>
+                                        <SelectContent>
+                                            {billboards.map(billboard => (
+                                                <SelectItem key={billboard.id} value={billboard.id}>
+                                                    {billboard.label}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
 
                                     </Select>
                                     <FormMessage />
