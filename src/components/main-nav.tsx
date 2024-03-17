@@ -24,7 +24,7 @@ export function MainNav({
         },
         {
             href: `/${params.storeId}/categories`,
-            label: "Billboards",
+            label: "Categories",
             active: pathname === `/${params.storeId}/categories`
         },
         {
