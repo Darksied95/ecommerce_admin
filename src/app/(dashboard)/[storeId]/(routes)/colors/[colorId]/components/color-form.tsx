@@ -109,7 +109,7 @@ export const ColorForm: React.FC<ColorFormProps> = ({
                     description={description} />
                 {initialData && (<Button
                     variant={"destructive"}
-                    color={"sm"}
+                    size={"icon"}
                     onClick={() => { setOpen(true) }}
                     disabled={loading}>
                     <Trash className="h-4 w-4" />
