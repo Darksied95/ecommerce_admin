@@ -83,7 +83,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         try {
             setLoading(true)
             if (initialData) {
-                await axios.patch(`/api/${params.storeId}/products/${params.billboardId}`, data)
+                await axios.patch(`/api/${params.storeId}/products/${params.productId}`, data)
             } else {
                 await axios.post(`/api/${params.storeId}/products`, data)
             }
@@ -102,13 +102,13 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         try {
             setLoading(true)
 
-            await axios.delete(`/api/${params.storeId}/products/${params.billboardId}`)
+            await axios.delete(`/api/${params.storeId}/products/${params.productId}`)
             router.refresh()
             router.push(`/${params.storeId}/products`)
             toast.success("Product deleted")
 
         } catch (error: any) {
-            toast.error("Make sure you removed all categories using this product")
+            toast.error("Something went wrong")
         } finally {
             setLoading(false)
             setOpen(false)
