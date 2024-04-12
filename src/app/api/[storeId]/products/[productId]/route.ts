@@ -55,7 +55,7 @@ export async function PATCH(
             },
             data: {
                 name,
-                price,
+                price: String(price),
                 isFeatured,
                 isArchived,
                 categoryId,
