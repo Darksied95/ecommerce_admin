@@ -30,7 +30,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 
 
 interface ProductFormProps {
-    initialData: Product & { image: Image[] } | null;
+    initialData: Product & { images: Image[] } | null;
     categories: Category[],
     sizes: Size[],
     colors: Color[]

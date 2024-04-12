@@ -10,7 +10,7 @@ const ProductPage = async ({ params }: { params: { productId: string, storeId: s
                 id: params.productId
             },
             include: {
-                image: true
+                images: true
             }
         })
     } catch (error: any) {
@@ -32,6 +32,7 @@ const ProductPage = async ({ params }: { params: { productId: string, storeId: s
             storeId: params.storeId
         }
     })
+
     return (
         <div className="flex-col">
             <div className="flex-1 space-y-4 p-8 pt-6">
